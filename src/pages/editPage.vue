@@ -1,7 +1,7 @@
 <template>
   <v-content class="detail-container">
     <Header>
-      <template slot="title">顧客詳細編集</template>
+      <template slot="title">顧客情報編集</template>
       <template slot="menus">
       </template>
     </Header>
