@@ -1,5 +1,6 @@
 <template>
   <v-toolbar color="teal" fixed>
+    <slot name="navi"></slot>
     <v-toolbar-title
       @click="backToList"
       class="white--text"

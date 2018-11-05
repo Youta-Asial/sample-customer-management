@@ -1,14 +1,14 @@
 <template>
   <v-content class="detail-container">
     <Header>
-      <template slot="title">顧客詳細</template>
-      <template slot="menus">
-        <HeaderMenu
-          :on-click-star="switchStar"
-          :on-click-edit="editItem"
-          :on-click-delete="deleteItem"
-        ></HeaderMenu>
-      </template>
+      <v-btn icon slot="navi"><v-icon>arrow_back</v-icon></v-btn>
+      <template slot="title">顧客情報詳細</template>
+      <HeaderMenu
+        slot="menus"
+        :on-click-star="switchStar"
+        :on-click-edit="editItem"
+        :on-click-delete="deleteItem"
+      ></HeaderMenu>
     </Header>
     <h1 class="display-1">{{ item.company }}</h1>
     <Detail :item="item"></Detail>
