@@ -1,7 +1,7 @@
 <template>
   <v-content class="detail-container">
     <Header>
-      <v-btn icon slot="navi"><v-icon>arrow_back</v-icon></v-btn>
+      <v-btn icon slot="navi" @click="backToList"><v-icon>arrow_back</v-icon></v-btn>
       <template slot="title">顧客情報詳細</template>
       <HeaderMenu
         slot="menus"
@@ -47,6 +47,11 @@
       },
       deleteItem () {
         console.log('delete')
+      },
+      backToList () {
+        this.$router.push({
+          name: 'list'
+        })
       }
     }
   }

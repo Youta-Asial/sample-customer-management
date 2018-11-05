@@ -2,7 +2,7 @@
   <v-layout align-center>
     <v-flex xs6 sm4 text-xs-center>
       <div @click="complete">
-        <v-btn flat large color="primary">完了</v-btn>
+        <v-btn flat large color="primary" width="48px">完了</v-btn>
       </div>
     </v-flex>
     <v-flex xs6 sm4 text-xs-center>

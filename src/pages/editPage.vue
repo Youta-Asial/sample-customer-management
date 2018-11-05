@@ -1,6 +1,7 @@
 <template>
   <v-content class="detail-container">
     <Header>
+      <v-btn icon slot="navi" @click="backToDetail"><v-icon>arrow_back</v-icon></v-btn>
       <template slot="title">顧客情報編集</template>
       <template slot="menus">
       </template>
