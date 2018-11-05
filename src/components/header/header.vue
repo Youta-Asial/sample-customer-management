@@ -7,7 +7,7 @@
       <slot name="title"></slot>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <slot name="menues"></slot>
+    <slot name="menus"></slot>
   </v-toolbar>
 </template>
 

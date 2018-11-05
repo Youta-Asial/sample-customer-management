@@ -6,6 +6,7 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import App from './App.vue'
 import ListPage from './pages/ListPage.vue'
 import DetailPage from './pages/DetailPage.vue'
+import EditPage from './pages/EditPage.vue'
 
 Vue.use(Vuetify, {
   theme: {
@@ -24,6 +25,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', name: 'list', component: ListPage },
     { path: '/detail/', name: 'detail', component: DetailPage, props: true },
+    { path: '/edit/', name: 'edit', component: EditPage, props: true },
   ]
 })
 

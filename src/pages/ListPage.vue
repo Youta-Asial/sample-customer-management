@@ -2,7 +2,7 @@
   <v-content class="list-container">
     <Header>
       <template slot="title">顧客リスト</template>
-      <template slot="menues">
+      <template slot="menus">
         <v-btn icon>
           <v-icon>search</v-icon>
         </v-btn>
