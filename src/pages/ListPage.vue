@@ -1,5 +1,16 @@
 <template>
   <v-content class="list-container">
+    <Header>
+      <template slot="title">顧客リスト</template>
+      <template slot="menues">
+        <v-btn icon>
+          <v-icon>search</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon>more_vert</v-icon>
+        </v-btn>
+      </template>
+    </Header>
     <List
       :current-page="page"
       :content="item"
@@ -11,7 +22,7 @@
           fixed
           color="teal"
           v-model="page"
-          :length="6"
+          :length="3"
         ></v-pagination>
       </div>
       </v-flex>
@@ -21,10 +32,13 @@
 
 <script>
   import List from '../components/list/list'
+  import Header from '../components/header/Header'
+
   export default {
     name: 'ListPage',
     components: {
-      List
+      Header,
+      List,
     },
     data: () => {
       return {
