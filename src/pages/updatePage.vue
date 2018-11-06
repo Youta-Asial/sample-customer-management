@@ -48,7 +48,7 @@
       completeEdit () {
         if (!this.checkRequire()) return
         this.updateItem()
-        EventBus.$emit('notify', '顧客情報が変更されました')
+        EventBus.$emit('notify', '顧客情報が変更されました', 'success')
         this.backToDetail(this.newItem)
       },
       backToDetail (param) {

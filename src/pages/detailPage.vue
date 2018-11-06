@@ -50,7 +50,7 @@
       deleteItem () {
         firebase.database().ref(`company_list/${this.id}`)
           .remove()
-        EventBus.$emit('notify', '顧客情報が削除されました')
+        EventBus.$emit('notify', '顧客情報が削除されました', 'success')
         this.backToList()
       },
       backToList () {

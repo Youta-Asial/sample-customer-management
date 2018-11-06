@@ -44,7 +44,7 @@
       completeEdit () {
         if (!this.checkRequire()) return
         this.setNewItem()
-        EventBus.$emit('notify', '顧客情報が追加されました')
+        EventBus.$emit('notify', '顧客情報が追加されました', 'success')
         this.goToDetail()
       },
       goToDetail () {
