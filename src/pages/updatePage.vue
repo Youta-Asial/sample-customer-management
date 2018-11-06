@@ -1,15 +1,18 @@
 <template>
   <v-content class="detail-container">
     <Header>
-      <v-btn icon slot="navi" @click="backToDetail"><v-icon>arrow_back</v-icon></v-btn>
+      <v-btn icon slot="navi" @click="backToDetail(item)"><v-icon>arrow_back</v-icon></v-btn>
       <template slot="title">顧客情報編集</template>
       <template slot="menus">
       </template>
     </Header>
-    <Edit :content="item"></Edit>
+    <Edit
+      :content="item"
+      @on-edit-item="editItem"
+    ></Edit>
     <EditButtons
       :complete="completeEdit"
-      :cancel="restoreItem"
+      :cancel="cancel"
     ></EditButtons>
   </v-content>
 </template>
@@ -30,26 +33,59 @@
       EditButtons,
     },
     props: {
-      item: Object
+      id: String,
+      item: Object,
     },
     data: () => {
       return {
+        newItem: {}
       }
     },
     methods: {
-      completeEdit () {
-        EventBus.$emit('notify', '顧客情報が変更されました')
-        this.backToDetail()
+      editItem (key, val) {
+        this.newItem[key] = val
       },
-      backToDetail () {
+      completeEdit () {
+        if (!this.checkRequire()) return
+        this.updateItem()
+        EventBus.$emit('notify', '顧客情報が変更されました')
+        this.backToDetail(this.newItem)
+      },
+      backToDetail (param) {
         this.$router.push({
           name: 'detail',
-          params: { item: this.item }
+          params: { id: this.id, item: param }
         })
       },
-      restoreItem () {
-        this.backToDetail()
+      cancel () {
+        this.backToDetail(this.item)
+      },
+      checkRequire () {
+        const validatedList = []
+        if (!this.newItem.company) {
+          validatedList.push('会社名')
+        }
+        if (!this.newItem.staff) {
+          validatedList.push('担当者名')
+        }
+        if (validatedList.length !== 0) {
+          let require = ''
+          for (let str of validatedList) {
+            require += `「${str}」`
+          }
+          EventBus.$emit('notify', `${require}は必須項目です`, 'error')
+          return false
+        } else {
+          return true
+        }
+      },
+      updateItem () {
+        firebase.database().ref(`company_list/${this.id}`)
+          .update(this.newItem)
       }
+    },
+    mounted () {
+      this.newItem = JSON.parse(JSON.stringify(this.item))
     }
   }
 </script>

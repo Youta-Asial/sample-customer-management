@@ -6,7 +6,10 @@
       <template slot="menus">
       </template>
     </Header>
-    <Edit :content="item"></Edit>
+    <Edit
+      :content="item"
+      @on-edit-item="editItem"
+    ></Edit>
     <EditButtons
       :complete="completeEdit"
       :cancel="backToList"
@@ -35,7 +38,11 @@
       }
     },
     methods: {
+      editItem (key, val) {
+        this.item[key] = val
+      },
       completeEdit () {
+        if (!this.checkRequire()) return
         this.setNewItem()
         EventBus.$emit('notify', '顧客情報が追加されました')
         this.goToDetail()
@@ -51,9 +58,27 @@
           name: 'list',
         })
       },
+      checkRequire () {
+        const validatedList = []
+        if (!this.item.company) {
+          validatedList.push('会社名')
+        }
+        if (!this.item.staff) {
+          validatedList.push('担当者名')
+        }
+        if (validatedList.length !== 0) {
+          let require = ''
+          for (let str of validatedList) {
+            require += `「${str}」`
+          }
+          EventBus.$emit('notify', `${require}は必須項目です`, 'error')
+          return false
+        } else {
+          return true
+        }
+      },
       setNewItem () {
-        // firebase.database().ref('otameshi').set({
-        // })
+        firebase.database().ref('company_list').push(this.item)
       }
     }
   }

@@ -8,7 +8,7 @@
         <v-icon>more_vert</v-icon>
       </v-btn>
       <v-list>
-        <v-list-tile @click="onClickEdit">
+        <v-list-tile @click="$emit('on-click-edit')">
           <v-list-tile-title>
             <v-icon>edit</v-icon>
             編集
@@ -41,11 +41,6 @@
     components: {
       ConfirmDialog,
     },
-    props: {
-      onClickStar: Function,
-      onClickEdit: Function,
-      onClickDelete: Function,
-    },
     data: () => {
       return {
         openMenu: false,
@@ -68,6 +63,7 @@
       },
       onAccept () {
         this.deleteDialog = false
+        this.$emit('on-click-delete')
       },
       onReject () {
         this.deleteDialog = false

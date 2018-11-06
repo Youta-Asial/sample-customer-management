@@ -9,6 +9,17 @@ import DetailPage from './pages/detailPage.vue'
 import UpdatePage from './pages/updatePage.vue'
 import CreatePage from './pages/createPage.vue'
 
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyCqg54nzsO5NfrxF7S7suE8zhKhbSl7n4k",
+  authDomain: "sample-customer-management.firebaseapp.com",
+  databaseURL: "https://sample-customer-management.firebaseio.com",
+  projectId: "sample-customer-management",
+  storageBucket: "sample-customer-management.appspot.com",
+  messagingSenderId: "699973683004"
+};
+
+firebase.initializeApp(config);
 Vue.use(VueRouter)
 Vue.use(Vuetify, {
   theme: {
@@ -37,14 +48,3 @@ new Vue({
   components: { App },
   router
 })
-
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyCqg54nzsO5NfrxF7S7suE8zhKhbSl7n4k",
-  authDomain: "sample-customer-management.firebaseapp.com",
-  databaseURL: "https://sample-customer-management.firebaseio.com",
-  projectId: "sample-customer-management",
-  storageBucket: "sample-customer-management.appspot.com",
-  messagingSenderId: "699973683004"
-};
-firebase.initializeApp(config);

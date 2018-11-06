@@ -1,11 +1,11 @@
 <template>
   <v-list two-line>
     <ListItem
-      v-for="index in 100"
+      v-for="(item, key, index) in companyList"
       v-if="isCurrentPageContent(index)"
-      :key="index"
-      :item="content"
-      :num="index"
+      :key="key"
+      :id="key"
+      :item="item"
       :on-click="goToDetail"
     ></ListItem>
   </v-list>
@@ -21,7 +21,7 @@
     },
     props: {
       currentPage: Number,
-      content: Object,
+      companyList: Object,
     },
     data: () => {
       return {
@@ -30,14 +30,14 @@
     computed: {
     },
     methods: {
-      goToDetail (item) {
+      goToDetail (id, item) {
         this.$router.push({
           name: 'detail',
-          params: { item: item }
+          params: { id: id, item: item }
         })
       },
       isCurrentPageContent (index) {
-        return ((this.currentPage - 1) * 20 < index) && (index <= this.currentPage * 20)
+        return ((this.currentPage - 1) * 20 < index + 1) && (index + 1 <= this.currentPage * 20)
       }
     }
   }

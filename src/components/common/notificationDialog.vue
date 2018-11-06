@@ -3,7 +3,7 @@
     class="notification-dialog"
     v-model="alert"
     dismissible
-    type="success"
+    :type="type"
     @notification-called="renderDialog"
   >
     {{ message }}
@@ -18,7 +18,8 @@
     data: () => {
       return {
         alert: false,
-        message: 'hello'
+        message: 'hello',
+        type: 'success'
       }
     },
     methods: {
@@ -28,8 +29,9 @@
       }
     },
     created () {
-      EventBus.$on('notify', (message) => {
+      EventBus.$on('notify', (message, type) => {
         this.message = message
+        this.type = type
         this.alert = true
         setTimeout(() => {
           this.alert = false

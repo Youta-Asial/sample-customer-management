@@ -23,7 +23,7 @@
     </v-toolbar>
     <List
       :current-page="page"
-      :content="item"
+      :company-list="companyList"
       ></List>
     <v-footer fixed>
       <v-flex xs12>
@@ -32,7 +32,7 @@
           fixed
           color="teal"
           v-model="page"
-          :length="3"
+          :length="pagerLength"
         ></v-pagination>
       </div>
       </v-flex>
@@ -54,16 +54,15 @@
     },
     data: () => {
       return {
-        item: {
-          'company': '株式会社ほげほげ',
-          'address': '東京都渋谷区どこどこ',
-          'staff': '保毛山太郎',
-          'email': 'hoge@hoge.com',
-          'TEL': '090-0909-0909',
-        },
+        companyList: {},
         options: [ 'hoge', 'fuga' ],
         page: 1,
         searchBox: false,
+      }
+    },
+    computed: {
+      pagerLength () {
+        return Math.round(Object.keys(this.companyList).length / 20) + 1
       }
     },
     methods: {
@@ -76,8 +75,15 @@
         this.searchBox = !this.searchBox
         console.log('search')
       },
+      getItemList () {
+        firebase.database().ref('company_list').on('value', (ss) => {
+          console.log(ss.val())
+          this.companyList = ss.val()
+        })
+      },
     },
     mounted () {
+      this.getItemList()
     }
   }
 </script>

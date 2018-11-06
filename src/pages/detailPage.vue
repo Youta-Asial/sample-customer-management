@@ -5,9 +5,9 @@
       <template slot="title">顧客情報詳細</template>
       <HeaderMenu
         slot="menus"
-        :on-click-star="switchStar"
-        :on-click-edit="goToUpdate"
-        :on-click-delete="deleteItem"
+        @on-click-star="switchStar"
+        @on-click-edit="goToUpdate"
+        @on-click-delete="deleteItem"
       ></HeaderMenu>
     </Header>
     <h1 class="display-1">{{ item.company }}</h1>
@@ -19,6 +19,7 @@
   import Detail from '../components/detail/Detail'
   import Header from '../components/header/Header'
   import HeaderMenu from '../components/detail/HeaderMenu'
+  import { EventBus } from '../eventBus.js'
 
   export default {
     name: 'DetailPage',
@@ -28,7 +29,8 @@
       Detail,
     },
     props: {
-      item: Object
+      id: String,
+      item: Object,
     },
     data: () => {
       return {
@@ -42,11 +44,14 @@
       goToUpdate () {
         this.$router.push({
           name: 'update',
-          params: { item: this.item }
+          params: { id: this.id, item: this.item }
         })
       },
       deleteItem () {
-        console.log('delete')
+        firebase.database().ref(`company_list/${this.id}`)
+          .remove()
+        EventBus.$emit('notify', '顧客情報が削除されました')
+        this.backToList()
       },
       backToList () {
         this.$router.push({
