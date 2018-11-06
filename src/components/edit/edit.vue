@@ -53,7 +53,7 @@
       editItem (key, val) {
         console.log(key, val)
       }
-    }
+    },
   }
 </script>
 

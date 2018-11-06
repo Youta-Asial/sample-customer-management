@@ -76,6 +76,8 @@
         this.searchBox = !this.searchBox
         console.log('search')
       },
+    },
+    mounted () {
     }
   }
 </script>

@@ -36,6 +36,7 @@
     },
     methods: {
       completeEdit () {
+        this.setNewItem()
         EventBus.$emit('notify', '顧客情報が追加されました')
         this.goToDetail()
       },
@@ -50,6 +51,10 @@
           name: 'list',
         })
       },
+      setNewItem () {
+        // firebase.database().ref('otameshi').set({
+        // })
+      }
     }
   }
 </script>

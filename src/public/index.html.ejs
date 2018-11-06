@@ -10,6 +10,7 @@
   from Monaca (cordova.js/ loader.js) in production mode -->
 <% for (var dep in htmlWebpackPlugin.options.externalJS) { %>
   <script type="text/javascript" src="<%= htmlWebpackPlugin.options.externalJS[dep] %>"></script><% } %>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 <% for (var dep in htmlWebpackPlugin.options.externalCSS) { %>
   <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.options.externalCSS[dep] %>"><% } %>
   <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
