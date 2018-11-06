@@ -10,6 +10,17 @@
         </HeaderMenu>
       </template>
     </Header>
+    <v-toolbar
+      class="search-box"
+      v-if="searchBox"
+    >
+      <v-text-field
+        class="search-input"
+        hide-details
+        prepend-icon="search"
+        single-line
+      ></v-text-field>
+    </v-toolbar>
     <List
       :current-page="page"
       :content="item"
@@ -52,6 +63,7 @@
         },
         options: [ 'hoge', 'fuga' ],
         page: 1,
+        searchBox: false,
       }
     },
     methods: {
@@ -61,6 +73,7 @@
         })
       },
       searchItem () {
+        this.searchBox = !this.searchBox
         console.log('search')
       },
     }
@@ -71,5 +84,9 @@
   .list-container {
     padding-top: 56px !important;
     padding-bottom: 36px !important;
+  }
+  .search-box {
+    width: 90%;
+    margin: -12px 5% !important;
   }
 </style>

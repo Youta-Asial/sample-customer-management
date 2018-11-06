@@ -1,14 +1,14 @@
 <template>
   <v-content class="detail-container">
     <Header>
-      <v-btn icon slot="navi" @click="goToDetail"><v-icon>arrow_back</v-icon></v-btn>
+      <v-btn icon slot="navi" @click="backToList"><v-icon>arrow_back</v-icon></v-btn>
       <template slot="title">顧客情報追加</template>
       <template slot="menus">
       </template>
     </Header>
     <Edit :content="item"></Edit>
     <EditButtons
-      :complete="backToList"
+      :complete="completeEdit"
       :cancel="backToList"
     ></EditButtons>
   </v-content>
@@ -19,6 +19,7 @@
   import Header from '../components/header/Header'
   // import HeaderMenu from '../components/edit/HeaderMenu'
   import EditButtons from '../components/edit/EditButtons'
+  import { EventBus } from '../eventBus.js'
 
   export default {
     name: 'CreatePage',
@@ -34,6 +35,10 @@
       }
     },
     methods: {
+      completeEdit () {
+        EventBus.$emit('notify', '顧客情報が追加されました')
+        this.goToDetail()
+      },
       goToDetail () {
         this.$router.push({
           name: 'detail',

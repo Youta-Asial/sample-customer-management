@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <NotificationDialog></NotificationDialog>
     <div class="main-container">
       <router-view></router-view>
     </div>
@@ -8,12 +9,12 @@
 
 <script>
   import WebFontLoader from 'webfontloader'
-  import Header from 'components/header/Header'
+  import NotificationDialog from './components/common/notificationDialog'
 
   export default {
     name: 'App',
     components: {
-      Header,
+      NotificationDialog,
     },
     mounted () {
       WebFontLoader.load({

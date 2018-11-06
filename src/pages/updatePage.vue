@@ -8,7 +8,7 @@
     </Header>
     <Edit :content="item"></Edit>
     <EditButtons
-      :complete="backToDetail"
+      :complete="completeEdit"
       :cancel="restoreItem"
     ></EditButtons>
   </v-content>
@@ -19,6 +19,7 @@
   import Header from '../components/header/Header'
   // import HeaderMenu from '../components/edit/HeaderMenu'
   import EditButtons from '../components/edit/EditButtons'
+  import { EventBus } from '../eventBus.js'
 
   export default {
     name: 'UpdatePage',
@@ -36,6 +37,10 @@
       }
     },
     methods: {
+      completeEdit () {
+        EventBus.$emit('notify', '顧客情報が変更されました')
+        this.backToDetail()
+      },
       backToDetail () {
         this.$router.push({
           name: 'detail',
