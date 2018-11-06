@@ -21,7 +21,7 @@
   import EditButtons from '../components/edit/EditButtons'
 
   export default {
-    name: 'EditPage',
+    name: 'UpdatePage',
     components: {
       Header,
       // HeaderMenu,

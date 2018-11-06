@@ -3,27 +3,37 @@
     <EditItem
       :icon="'domain'"
       :label="'会社名'"
-      :value="content.company"
+      :item-key="'company'"
+      :item-value="content.company"
+      @on-edit-item="editItem"
     ></EditItem>
     <EditItem
       :icon="'person'"
       :label="'担当者名'"
-      :value="content.staff"
+      :item-key="'staff'"
+      :item-value="content.staff"
+      @on-edit-item="editItem"
     ></EditItem>
     <EditItem
       :icon="'phone'"
       :label="'担当者電話番号'"
-      :value="content.TEL"
+      :item-key="'TEL'"
+      :item-value="content.TEL"
+      @on-edit-item="editItem"
     ></EditItem>
     <EditItem
       :icon="'mail'"
       :label="'担当者Eメール'"
-      :value="content.email"
+      :item-key="'email'"
+      :item-value="content.email"
+      @on-edit-item="editItem"
     ></EditItem>
     <EditItem
       :icon="'place'"
       :label="'所在地'"
-      :value="content.address"
+      :item-key="'address'"
+      :item-value="content.address"
+      @on-edit-item="editItem"
     ></EditItem>
   </v-list>
 </template>
@@ -39,6 +49,11 @@
     props: {
       content: Object
     },
+    methods: {
+      editItem (key, val) {
+        console.log(key, val)
+      }
+    }
   }
 </script>
 

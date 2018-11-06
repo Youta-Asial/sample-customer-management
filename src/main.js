@@ -4,9 +4,10 @@ import VueRouter from 'vue-router'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import App from './App.vue'
-import ListPage from './pages/ListPage.vue'
-import DetailPage from './pages/DetailPage.vue'
-import EditPage from './pages/EditPage.vue'
+import ListPage from './pages/listPage.vue'
+import DetailPage from './pages/detailPage.vue'
+import UpdatePage from './pages/updatePage.vue'
+import CreatePage from './pages/createPage.vue'
 
 Vue.use(Vuetify, {
   theme: {
@@ -25,7 +26,8 @@ const router = new VueRouter({
   routes: [
     { path: '/', name: 'list', component: ListPage },
     { path: '/detail/', name: 'detail', component: DetailPage, props: true },
-    { path: '/edit/', name: 'edit', component: EditPage, props: true },
+    { path: '/update/', name: 'update', component: UpdatePage, props: true },
+    { path: '/create/', name: 'create', component: CreatePage, props: true },
   ]
 })
 

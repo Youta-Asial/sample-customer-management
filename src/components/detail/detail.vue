@@ -34,10 +34,5 @@
     props: {
       item: Object
     },
-    methods: {
-      back () {
-        this.$router.back()
-      }
-    }
   }
 </script>

@@ -6,7 +6,7 @@
       :key="index"
       :item="content"
       :num="index"
-      :on-click="showDetail"
+      :on-click="goToDetail"
     ></ListItem>
   </v-list>
 </template>
@@ -30,7 +30,7 @@
     computed: {
     },
     methods: {
-      showDetail (item) {
+      goToDetail (item) {
         this.$router.push({
           name: 'detail',
           params: { item: item }

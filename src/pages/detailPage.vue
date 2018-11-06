@@ -6,7 +6,7 @@
       <HeaderMenu
         slot="menus"
         :on-click-star="switchStar"
-        :on-click-edit="editItem"
+        :on-click-edit="goToUpdate"
         :on-click-delete="deleteItem"
       ></HeaderMenu>
     </Header>
@@ -39,9 +39,9 @@
       switchStar () {
         console.log('Yay!')
       },
-      editItem () {
+      goToUpdate () {
         this.$router.push({
-          name: 'edit',
+          name: 'update',
           params: { item: this.item }
         })
       },

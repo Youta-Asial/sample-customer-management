@@ -8,8 +8,8 @@
     <v-flex xs6 sm4 text-xs-center>
       <ConfirmDialog
         :rendered="cancelDialog"
-        :title="'変更の破棄'"
-        :message="'変更を破棄して編集を終了します。よろしいですか？'"
+        :title="'編集の破棄'"
+        :message="'現在の内容を破棄して編集を終了します。よろしいですか？'"
         @on-accept="onAccept"
         @on-reject="onReject"
       >
@@ -42,7 +42,7 @@
       },
       onAccept () {
         this.cancelDialog = false
-        this.complete()
+        this.cancel()
       },
       onReject () {
         this.cancelDialog = false

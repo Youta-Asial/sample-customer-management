@@ -3,12 +3,11 @@
     <Header>
       <template slot="title">顧客リスト</template>
       <template slot="menus">
-        <v-btn icon>
-          <v-icon>search</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>more_vert</v-icon>
-        </v-btn>
+        <HeaderMenu
+          :on-click-add="goToAdd"
+          :on-click-search="searchItem"
+        >
+        </HeaderMenu>
       </template>
     </Header>
     <List
@@ -31,13 +30,15 @@
 </template>
 
 <script>
-  import List from '../components/list/list'
   import Header from '../components/header/Header'
+  import HeaderMenu from '../components/list/HeaderMenu'
+  import List from '../components/list/list'
 
   export default {
     name: 'ListPage',
     components: {
       Header,
+      HeaderMenu,
       List,
     },
     data: () => {
@@ -52,6 +53,16 @@
         options: [ 'hoge', 'fuga' ],
         page: 1,
       }
+    },
+    methods: {
+      goToAdd () {
+        this.$router.push({
+          name: 'create'
+        })
+      },
+      searchItem () {
+        console.log('search')
+      },
     }
   }
 </script>
