@@ -1,19 +1,21 @@
 <template>
   <v-content class="detail-container">
     <Header>
-      <v-btn icon slot="navi" @click="backToList"><v-icon>arrow_back</v-icon></v-btn>
+      <v-btn icon slot="navi" class="header-icon" @click="backToList"><v-icon>arrow_back</v-icon></v-btn>
       <template slot="title">顧客情報追加</template>
       <template slot="menus">
       </template>
     </Header>
-    <Edit
-      :content="item"
-      @on-edit-item="editItem"
-    ></Edit>
-    <EditButtons
-      :complete="completeEdit"
-      :cancel="backToList"
-    ></EditButtons>
+    <v-card>
+      <Edit
+        :content="item"
+        @on-edit-item="editItem"
+      ></Edit>
+      <EditButtons
+        :complete="completeEdit"
+        :cancel="backToList"
+      ></EditButtons>
+    </v-card>
   </v-content>
 </template>
 

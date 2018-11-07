@@ -1,5 +1,10 @@
 <template>
   <v-list two-line>
+    <v-list-tile>
+      <v-list-tile-content>
+    <h1 class="display-1">{{ item.company }}</h1>
+      </v-list-tile-content>
+    </v-list-tile>
     <DetailItem
       :icon="'person'"
       :title="item.staff"

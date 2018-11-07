@@ -24,3 +24,9 @@
     }
   }
 </script>
+
+<style>
+  .header-icon {
+    color: #fff !important;
+  }
+</style>

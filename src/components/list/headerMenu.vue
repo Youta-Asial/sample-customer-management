@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-btn icon @click="onClickSearch">
+    <v-btn icon class="header-icon" @click="onClickSearch">
       <v-icon>search</v-icon>
     </v-btn>
-    <v-btn icon @click="onClickAdd">
+    <v-btn icon class="header-icon" @click="onClickAdd">
       <v-icon>add</v-icon>
     </v-btn>
   </div>

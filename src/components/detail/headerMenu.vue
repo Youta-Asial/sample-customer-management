@@ -1,10 +1,7 @@
 <template>
   <div>
-    <v-btn icon @click="onClickStarMock">
-      <v-icon :color="starColor">star</v-icon>
-    </v-btn>
     <v-menu v-model="openMenu" bottom offset-y>
-      <v-btn slot="activator" icon>
+      <v-btn slot="activator" class="header-icon" icon>
         <v-icon>more_vert</v-icon>
       </v-btn>
       <v-list>
@@ -45,18 +42,9 @@
       return {
         openMenu: false,
         deleteDialog: false,
-        star: false
-      }
-    },
-    computed: {
-      starColor () {
-        return this.star ? 'yellow' : ''
       }
     },
     methods: {
-      onClickStarMock () {
-        this.star = !this.star
-      },
       renderDialog () {
         this.deleteDialog = true
         this.openMenu = false

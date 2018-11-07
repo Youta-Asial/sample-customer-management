@@ -1,7 +1,7 @@
 <template>
   <v-content class="detail-container">
     <Header>
-      <v-btn icon slot="navi" @click="backToList"><v-icon>arrow_back</v-icon></v-btn>
+      <v-btn icon class="header-icon" slot="navi" @click="backToList"><v-icon>arrow_back</v-icon></v-btn>
       <template slot="title">顧客情報詳細</template>
       <HeaderMenu
         slot="menus"
@@ -10,8 +10,9 @@
         @on-click-delete="deleteItem"
       ></HeaderMenu>
     </Header>
-    <h1 class="display-1">{{ item.company }}</h1>
-    <Detail :item="item"></Detail>
+    <v-card>
+      <Detail :item="item"></Detail>
+    </v-card>
   </v-content>
 </template>
 
