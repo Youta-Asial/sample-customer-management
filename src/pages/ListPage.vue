@@ -13,6 +13,7 @@
     <SearchBox
       v-show="searchBox"
       :company-list="companyList"
+      :company-list-copy="companyListCopy"
       @on-input="setCompanyList"
       @on-click-close="search"
     ></SearchBox>
@@ -52,6 +53,7 @@
     data: () => {
       return {
         companyList: {},
+        companyListCopy: {},
         options: [ 'hoge', 'fuga' ],
         page: 1,
         searchBox: false,
@@ -74,9 +76,13 @@
       setCompanyList (newItems) {
         this.companyList = newItems
       },
+      cloneCompanyList () {
+        this.companyListCopy = JSON.parse(JSON.stringify(this.companyList))
+      },
       getItemList () {
         firebase.database().ref('company_list').on('value', (ss) => {
           this.setCompanyList(ss.val())
+          this.cloneCompanyList()
         })
       },
     },

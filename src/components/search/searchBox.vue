@@ -24,12 +24,12 @@
   export default {
     name: 'SearchBox',
     props: {
-      companyList: {},
+      companyList: Object,
+      companyListCopy: Object,
     },
     data: () => {
       return {
         searchParam: '',
-        companyListCopy: {},
       }
     },
     computed: {
@@ -50,14 +50,6 @@
         this.$emit('on-input', this.result)
       }
     },
-    methods: {
-      cloneList () {
-        this.companyListCopy = JSON.parse(JSON.stringify(this.companyList))
-      },
-    },
-    mounted () {
-      this.cloneList()
-    }
   }
 </script>
 
