@@ -5,22 +5,17 @@
       <template slot="menus">
         <HeaderMenu
           :on-click-add="goToAdd"
-          :on-click-search="searchItem"
+          :on-click-search="search"
         >
         </HeaderMenu>
       </template>
     </Header>
-    <v-toolbar
-      class="search-box"
-      v-if="searchBox"
-    >
-      <v-text-field
-        class="search-input"
-        hide-details
-        prepend-icon="search"
-        single-line
-      ></v-text-field>
-    </v-toolbar>
+    <SearchBox
+      v-show="searchBox"
+      :company-list="companyList"
+      @on-input="setCompanyList"
+      @on-click-close="search"
+    ></SearchBox>
     <List
       :current-page="page"
       :company-list="companyList"
@@ -43,7 +38,8 @@
 <script>
   import Header from '../components/header/Header'
   import HeaderMenu from '../components/list/HeaderMenu'
-  import List from '../components/list/list'
+  import List from '../components/list/List'
+  import SearchBox from '../components/search/SearchBox'
 
   export default {
     name: 'ListPage',
@@ -51,6 +47,7 @@
       Header,
       HeaderMenu,
       List,
+      SearchBox,
     },
     data: () => {
       return {
@@ -71,14 +68,15 @@
           name: 'create'
         })
       },
-      searchItem () {
+      search () {
         this.searchBox = !this.searchBox
-        console.log('search')
+      },
+      setCompanyList (newItems) {
+        this.companyList = newItems
       },
       getItemList () {
         firebase.database().ref('company_list').on('value', (ss) => {
-          console.log(ss.val())
-          this.companyList = ss.val()
+          this.setCompanyList(ss.val())
         })
       },
     },
@@ -92,9 +90,5 @@
   .list-container {
     padding-top: 56px !important;
     padding-bottom: 36px !important;
-  }
-  .search-box {
-    width: 90%;
-    margin: -12px 5% !important;
   }
 </style>
