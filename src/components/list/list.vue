@@ -1,5 +1,6 @@
 <template>
   <v-list two-line>
+  <v-slide-y-transition class="py-0" group  tag="v-list">
     <ListItem
       v-for="(item, key, index) in companyList"
       v-if="isCurrentPageContent(index)"
@@ -8,6 +9,7 @@
       :item="item"
       :on-click="goToDetail"
     ></ListItem>
+  </v-slide-y-transition>
   </v-list>
 </template>
 

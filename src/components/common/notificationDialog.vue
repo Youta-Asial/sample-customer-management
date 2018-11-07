@@ -1,8 +1,8 @@
 <template>
   <v-alert
+    transition="slide-y-transition"
     class="notification-dialog"
     v-model="alert"
-    dismissible
     :type="type"
     @notification-called="renderDialog"
   >
@@ -43,9 +43,12 @@
 
 <style scoped>
   .notification-dialog {
-    opacity: 80%;
+    opacity: 0.9;
     width: 100%;
+    height: 40px;
     z-index: 100;
     position: fixed;
+    margin-top: 56px;
+    border-radius: 20px;
   }
 </style>

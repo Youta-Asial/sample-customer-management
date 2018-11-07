@@ -1,5 +1,6 @@
 <template>
   <v-toolbar
+    transition="slide-y-transition"
     class="search-box"
   >
     <v-text-field
