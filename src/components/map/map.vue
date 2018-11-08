@@ -3,8 +3,6 @@
 </template>
 
 <script>
-  import Mapbox from 'mapbox-gl';
-
   export default {
     name: 'Map',
     mounted () {

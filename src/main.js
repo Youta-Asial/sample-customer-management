@@ -8,6 +8,7 @@ import ListPage from './pages/listPage.vue'
 import DetailPage from './pages/detailPage.vue'
 import UpdatePage from './pages/updatePage.vue'
 import CreatePage from './pages/createPage.vue'
+import mapboxgl from 'mapbox-gl'
 
 // Initialize Firebase
 var config = {
