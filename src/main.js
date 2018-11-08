@@ -9,10 +9,14 @@ import DetailPage from './pages/detailPage.vue'
 import UpdatePage from './pages/updatePage.vue'
 import CreatePage from './pages/createPage.vue'
 import mapboxgl from 'mapbox-gl'
+import {
+  FIREBASE_API_KEY,
+  MAPBOX_API_TOKEN,
+} from './consts/consts.js'
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyCqg54nzsO5NfrxF7S7suE8zhKhbSl7n4k",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "sample-customer-management.firebaseapp.com",
   databaseURL: "https://sample-customer-management.firebaseio.com",
   projectId: "sample-customer-management",
@@ -50,4 +54,4 @@ new Vue({
   router
 })
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibW9uYWNhLWRlbW8iLCJhIjoiY2pvNnlnZWo3MDh6aDN1bG1jaWwyNHIxeCJ9.6pv8KQLCXFZDscxBx1L9ng';
+mapboxgl.accessToken = MAPBOX_API_TOKEN

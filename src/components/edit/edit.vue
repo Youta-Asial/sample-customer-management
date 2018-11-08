@@ -51,7 +51,6 @@
     },
     methods: {
       editItem (key, val) {
-        console.log(key, val)
         this.$emit('on-edit-item', key, val)
       }
     },

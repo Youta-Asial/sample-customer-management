@@ -25,7 +25,9 @@
       :title="item.address"
       :subtitle="'所在地'"
     ></DetailItem>
-    <Map></Map>
+    <Map
+      :address="item.address"
+    ></Map>
   </v-list>
 </template>
 
