@@ -20,7 +20,8 @@
     <List
       :current-page="page"
       :company-list="companyList"
-      ></List>
+      :rows="rows"
+    ></List>
     <v-footer fixed>
       <v-flex xs12>
       <div class="text-xs-center">
@@ -57,6 +58,7 @@
         options: [ 'hoge', 'fuga' ],
         page: 1,
         searchBox: false,
+        rows: 10,
       }
     },
     computed: {
@@ -64,10 +66,10 @@
         const count = Object.keys(this.companyList).length
         if (!count) {
           return 1
-        } else if (!(count % 20)) {
-          return count / 20
+        } else if (!(count % this.rows)) {
+          return count / this.rows
         } else {
-          return Math.floor(count / 20) + 1
+          return Math.floor(count / this.rows) + 1
         }
       }
     },

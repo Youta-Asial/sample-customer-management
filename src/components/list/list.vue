@@ -24,6 +24,7 @@
     props: {
       currentPage: Number,
       companyList: Object,
+      rows: Number,
     },
     data: () => {
       return {
@@ -39,7 +40,7 @@
         })
       },
       isCurrentPageContent (index) {
-        return ((this.currentPage - 1) * 20 < index + 1) && (index + 1 <= this.currentPage * 20)
+        return ((this.currentPage - 1) * this.rows < index + 1) && (index + 1 <= this.currentPage * this.rows)
       }
     }
   }
