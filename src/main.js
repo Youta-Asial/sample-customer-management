@@ -48,3 +48,5 @@ new Vue({
   components: { App },
   router
 })
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibW9uYWNhLWRlbW8iLCJhIjoiY2pvNnlnZWo3MDh6aDN1bG1jaWwyNHIxeCJ9.6pv8KQLCXFZDscxBx1L9ng';

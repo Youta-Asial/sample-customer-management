@@ -96,7 +96,7 @@ let webpackConfig = {
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       }
     ]
   },
@@ -109,6 +109,9 @@ let webpackConfig = {
       chunkFilename: '[name].css'
     }),
     new ProgressBarPlugin(),
+    new webpack.ProvidePlugin({
+      mapboxgl: 'mapbox-gl'
+    })
   ],
  
   resolveLoader: {
