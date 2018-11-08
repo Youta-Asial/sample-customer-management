@@ -61,7 +61,14 @@
     },
     computed: {
       pagerLength () {
-        return Math.round(Object.keys(this.companyList).length / 20) + 1
+        const count = Object.keys(this.companyList).length
+        if (!count) {
+          return 1
+        } else if (!(count % 20)) {
+          return count / 20
+        } else {
+          return Math.floor(count / 20) + 1
+        }
       }
     },
     methods: {
