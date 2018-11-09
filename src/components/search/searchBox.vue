@@ -24,8 +24,7 @@
   export default {
     name: 'SearchBox',
     props: {
-      companyList: Object,
-      companyListCopy: Object,
+      customerListCopy: Object,
     },
     data: () => {
       return {
@@ -35,10 +34,11 @@
     computed: {
       result () {
         let resultData = {}
-        for (let id in this.companyListCopy) {
-          for (let key in this.companyListCopy[id]) {
-            if (this.companyListCopy[id][key].indexOf(this.searchParam) > -1) {
-              resultData[id] = this.companyListCopy[id]
+        for (let id in this.customerListCopy) {
+          for (let key in this.customerListCopy[id]) {
+            if (this.customerListCopy[id][key].indexOf(this.searchParam) > -1) {
+              // 検索文字列が部分一致したものを結果セットに入れて表示する
+              resultData[id] = this.customerListCopy[id]
             }
           }
         }

@@ -12,14 +12,13 @@
     </Header>
     <SearchBox
       v-show="searchBox"
-      :company-list="companyList"
-      :company-list-copy="companyListCopy"
-      @on-input="setCompanyList"
+      :customer-list-copy="customerListCopy"
+      @on-input="setCustomerList"
       @on-click-close="search"
     ></SearchBox>
     <List
       :current-page="page"
-      :company-list="companyList"
+      :customer-list="customerList"
       :rows="rows"
     ></List>
     <v-footer fixed>
@@ -53,8 +52,8 @@
     },
     data: () => {
       return {
-        companyList: {},
-        companyListCopy: {},
+        customerList: {},
+        customerListCopy: {},
         options: [ 'hoge', 'fuga' ],
         page: 1,
         searchBox: false,
@@ -63,7 +62,7 @@
     },
     computed: {
       pagerLength () {
-        const count = Object.keys(this.companyList).length
+        const count = Object.keys(this.customerList).length
         if (!count) {
           return 1
         } else if (!(count % this.rows)) {
@@ -82,21 +81,23 @@
       search () {
         this.searchBox = !this.searchBox
       },
-      setCompanyList (newItems) {
-        this.companyList = newItems
+      setCustomerList (customerList) {
+        this.customerList = customerList
       },
-      cloneCompanyList () {
-        this.companyListCopy = JSON.parse(JSON.stringify(this.companyList))
+      cloneCustomerList () {
+        this.customerListCopy = JSON.parse(JSON.stringify(this.customerList))
       },
-      getItemList () {
-        firebase.database().ref('company_list').on('value', (ss) => {
-          this.setCompanyList(ss.val())
-          this.cloneCompanyList()
+      getCustomerList () {
+        firebase.database().ref('/customer_list').on('value', (ss) => {
+          if (ss.val()) {
+            this.setCustomerList(ss.val())
+            this.cloneCustomerList()
+          }
         })
       },
     },
     mounted () {
-      this.getItemList()
+      this.getCustomerList()
     }
   }
 </script>

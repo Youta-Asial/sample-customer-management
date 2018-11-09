@@ -1,12 +1,12 @@
 <template>
   <v-list-tile
-    @click="onClick(id, item)"
+    @click="$emit('on-click-list-item', id, customer)"
     class="list-item"
   >
     <div class="border-wrapper">
       <v-list-tile-content>
-        <v-list-tile-title>{{ item.company }}</v-list-tile-title>
-        <v-list-tile-sub-title>担当者: {{ item.staff }} 様</v-list-tile-sub-title>
+        <v-list-tile-title>{{ customer.company }}</v-list-tile-title>
+        <v-list-tile-sub-title>担当者: {{ customer.staff }} 様</v-list-tile-sub-title>
       </v-list-tile-content>
     </div>
   </v-list-tile>
@@ -17,8 +17,7 @@
     name: 'ListItem',
     props: {
       id: String,
-      item: Object,
-      onClick: Function,
+      customer: Object,
     }
   }
 </script>

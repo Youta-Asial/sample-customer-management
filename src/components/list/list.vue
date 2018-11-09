@@ -2,12 +2,12 @@
   <v-list two-line>
   <v-slide-y-transition class="py-0" group  tag="v-list">
     <ListItem
-      v-for="(item, key, index) in companyList"
+      v-for="(item, key, index) in customerList"
       v-if="isCurrentPageContent(index)"
       :key="key"
       :id="key"
-      :item="item"
-      :on-click="goToDetail"
+      :customer="item"
+      @on-click-list-item="goToDetail"
     ></ListItem>
   </v-slide-y-transition>
   </v-list>
@@ -23,20 +23,14 @@
     },
     props: {
       currentPage: Number,
-      companyList: Object,
+      customerList: Object,
       rows: Number,
     },
-    data: () => {
-      return {
-      }
-    },
-    computed: {
-    },
     methods: {
-      goToDetail (id, item) {
+      goToDetail (id, customer) {
         this.$router.push({
           name: 'detail',
-          params: { id: id, item: item }
+          params: { id: id, customer: customer }
         })
       },
       isCurrentPageContent (index) {
