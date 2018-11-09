@@ -22,6 +22,7 @@
       }
     },
     created () {
+      // norify イベントを登録し、発火を検知するとダイアログを表示する
       EventBus.$on('notify', (message, type) => {
         this.message = message
         this.type = type
