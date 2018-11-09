@@ -5,13 +5,12 @@
       <template slot="title">顧客情報詳細</template>
       <HeaderMenu
         slot="menus"
-        @on-click-star="switchStar"
         @on-click-edit="goToUpdate"
-        @on-click-delete="deleteItem"
+        @on-click-delete="deleteCustomer"
       ></HeaderMenu>
     </Header>
     <v-card>
-      <Detail :item="item"></Detail>
+      <Detail :customer="customer"></Detail>
     </v-card>
   </v-content>
 </template>
@@ -31,7 +30,7 @@
     },
     props: {
       id: String,
-      item: Object,
+      customer: Object,
     },
     data: () => {
       return {
@@ -39,20 +38,18 @@
       }
     },
     methods: {
-      switchStar () {
-        console.log('Yay!')
+      deleteCustomer () {
+        // データベースアクセス
+        firebase.database().ref(`customer_list/${this.id}`)
+          .remove()
+        EventBus.$emit('notify', '顧客情報が削除されました', 'success')
+        this.backToList()
       },
       goToUpdate () {
         this.$router.push({
           name: 'update',
-          params: { id: this.id, item: this.item }
+          params: { id: this.id, customer: this.customer }
         })
-      },
-      deleteItem () {
-        firebase.database().ref(`company_list/${this.id}`)
-          .remove()
-        EventBus.$emit('notify', '顧客情報が削除されました', 'success')
-        this.backToList()
       },
       backToList () {
         this.$router.push({

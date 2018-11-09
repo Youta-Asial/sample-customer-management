@@ -46,6 +46,7 @@
       }
     },
     watch: {
+      // 検索ボックスの入力を監視
       searchParam () {
         this.$emit('on-input', this.result)
       }

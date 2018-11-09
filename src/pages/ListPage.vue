@@ -4,8 +4,8 @@
       <template slot="title">顧客リスト</template>
       <template slot="menus">
         <HeaderMenu
-          :on-click-add="goToAdd"
-          :on-click-search="search"
+          @on-click-search="search"
+          @on-click-add="goToAdd"
         >
         </HeaderMenu>
       </template>
@@ -23,14 +23,14 @@
     ></List>
     <v-footer fixed>
       <v-flex xs12>
-      <div class="text-xs-center">
-        <v-pagination
-          fixed
-          color="teal"
-          v-model="page"
-          :length="pagerLength"
-        ></v-pagination>
-      </div>
+        <div class="text-xs-center">
+          <v-pagination
+            fixed
+            color="teal"
+            v-model="page"
+            :length="pagerLength"
+          ></v-pagination>
+        </div>
       </v-flex>
     </v-footer>
   </v-content>
@@ -54,7 +54,6 @@
       return {
         customerList: {},
         customerListCopy: {},
-        options: [ 'hoge', 'fuga' ],
         page: 1,
         searchBox: false,
         rows: 10,
@@ -64,10 +63,13 @@
       pagerLength () {
         const count = Object.keys(this.customerList).length
         if (!count) {
+          // 表示するデータが存在しない場合
           return 1
         } else if (!(count % this.rows)) {
+          // 表示行数ちょうどの場合
           return count / this.rows
         } else {
+          // 表示行数ちょうどでない場合は次のページに繰越す
           return Math.floor(count / this.rows) + 1
         }
       }
@@ -79,21 +81,24 @@
         })
       },
       search () {
+        // 検索ボックスの表示・非表示
         this.searchBox = !this.searchBox
       },
-      setCustomerList (customerList) {
-        this.customerList = customerList
-      },
-      cloneCustomerList () {
-        this.customerListCopy = JSON.parse(JSON.stringify(this.customerList))
-      },
       getCustomerList () {
+        // データベースアクセス
         firebase.database().ref('/customer_list').on('value', (ss) => {
           if (ss.val()) {
             this.setCustomerList(ss.val())
             this.cloneCustomerList()
           }
         })
+      },
+      setCustomerList (customerList) {
+        this.customerList = customerList
+      },
+      cloneCustomerList () {
+        // 絞り込み検索のためのコピーを作成
+        this.customerListCopy = JSON.parse(JSON.stringify(this.customerList))
       },
     },
     mounted () {

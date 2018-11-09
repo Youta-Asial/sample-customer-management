@@ -2,31 +2,31 @@
   <v-list two-line>
     <v-list-tile>
       <v-list-tile-content>
-    <h1 class="display-1">{{ item.company }}</h1>
+    <h1 class="display-1">{{ customer.company }}</h1>
       </v-list-tile-content>
     </v-list-tile>
     <DetailItem
       :icon="'person'"
-      :title="item.staff"
+      :title="customer.staff"
       :subtitle="'担当者名'"
     ></DetailItem>
     <DetailItem
       :icon="'phone'"
-      :title="item.TEL"
+      :title="customer.TEL"
       :subtitle="'担当者電話番号'"
     ></DetailItem>
     <DetailItem
       :icon="'mail'"
-      :title="item.email"
+      :title="customer.email"
       :subtitle="'担当者Eメール'"
     ></DetailItem>
     <DetailItem
       :icon="'place'"
-      :title="item.address"
+      :title="customer.address"
       :subtitle="'所在地'"
     ></DetailItem>
     <Map
-      :address="item.address"
+      :address="customer.address"
     ></Map>
   </v-list>
 </template>
@@ -42,7 +42,7 @@
       Map,
     },
     props: {
-      item: Object
+      customer: Object
     },
   }
 </script>

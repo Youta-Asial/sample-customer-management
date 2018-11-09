@@ -1,19 +1,20 @@
 <template>
   <v-content class="detail-container">
     <Header>
-      <v-btn icon slot="navi" class="header-icon" @click="backToDetail(item)"><v-icon>arrow_back</v-icon></v-btn>
+      <v-btn icon slot="navi" class="header-icon" @click="backToDetail(customer)">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
       <template slot="title">顧客情報編集</template>
-      <template slot="menus">
-      </template>
+      <template slot="menus"></template>
     </Header>
     <v-card>
       <Edit
-        :content="item"
-        @on-edit-item="editItem"
+        :customer="customer"
+        @on-edit-customer="editItem"
       ></Edit>
       <EditButtons
-        :complete="completeEdit"
-        :cancel="cancel"
+        @complete="completeEdit"
+        @cancel="cancelEdit"
       ></EditButtons>
     </v-card>
   </v-content>
@@ -22,7 +23,6 @@
 <script>
   import Edit from '../components/edit/Edit'
   import Header from '../components/header/Header'
-  // import HeaderMenu from '../components/edit/HeaderMenu'
   import EditButtons from '../components/edit/EditButtons'
   import { EventBus } from '../eventBus.js'
 
@@ -30,44 +30,45 @@
     name: 'UpdatePage',
     components: {
       Header,
-      // HeaderMenu,
       Edit,
       EditButtons,
     },
     props: {
       id: String,
-      item: Object,
+      customer: Object,
     },
     data: () => {
       return {
-        newItem: {}
+        forUpdate: {}
       }
     },
     methods: {
       editItem (key, val) {
-        this.newItem[key] = val
+        this.forUpdate[key] = val
       },
       completeEdit () {
         if (!this.checkRequire()) return
+        // 入力チェックをパスしたらデータベースを更新して画面遷移
         this.updateItem()
         EventBus.$emit('notify', '顧客情報が変更されました', 'success')
-        this.backToDetail(this.newItem)
+        this.backToDetail(this.forUpdate)
       },
-      backToDetail (param) {
+      cancelEdit () {
+        this.backToDetail(this.customer)
+      },
+      backToDetail (customer) {
         this.$router.push({
           name: 'detail',
-          params: { id: this.id, item: param }
+          params: { id: this.id, customer: customer }
         })
       },
-      cancel () {
-        this.backToDetail(this.item)
-      },
       checkRequire () {
+        // 必須チェック
         const validatedList = []
-        if (!this.newItem.company) {
+        if (!this.forUpdate.company) {
           validatedList.push('会社名')
         }
-        if (!this.newItem.staff) {
+        if (!this.forUpdate.staff) {
           validatedList.push('担当者名')
         }
         if (validatedList.length !== 0) {
@@ -82,12 +83,14 @@
         }
       },
       updateItem () {
-        firebase.database().ref(`company_list/${this.id}`)
-          .update(this.newItem)
+        // データベースアクセス
+        firebase.database().ref(`customer_list/${this.id}`)
+          .update(this.forUpdate)
       }
     },
     mounted () {
-      this.newItem = JSON.parse(JSON.stringify(this.item))
+      // 更新用にデータをコピー
+      this.forUpdate = JSON.parse(JSON.stringify(this.customer))
     }
   }
 </script>

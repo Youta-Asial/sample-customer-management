@@ -7,8 +7,8 @@
       <v-text-field
         style="width:100%"
         :label="label"
-        :value="itemValue"
-        @input="editItem"
+        :value="customerValue"
+        @input="editCustomer"
       ></v-text-field>
     </v-list-tile-content>
   </v-list-tile>
@@ -20,12 +20,12 @@
     props: {
       icon: String,
       label: String,
-      itemKey: String,
-      itemValue: String,
+      customerKey: String,
+      customerValue: String,
     },
     methods: {
-      editItem (val) {
-        this.$emit('on-edit-item', this.itemKey, val)
+      editCustomer (val) {
+        this.$emit('on-edit-customer', this.customerKey, val)
       }
     }
   }

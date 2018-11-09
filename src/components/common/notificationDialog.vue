@@ -2,9 +2,8 @@
   <v-alert
     transition="slide-y-transition"
     class="notification-dialog"
-    v-model="alert"
+    v-model="rendered"
     :type="type"
-    @notification-called="renderDialog"
   >
     {{ message }}
   </v-alert>
@@ -17,24 +16,18 @@
     name: 'NotificationDialog',
     data: () => {
       return {
-        alert: false,
+        rendered: false,
         message: 'hello',
         type: 'success'
-      }
-    },
-    methods: {
-      renderDialog () {
-        console.log('hey')
-        this.alert = true
       }
     },
     created () {
       EventBus.$on('notify', (message, type) => {
         this.message = message
         this.type = type
-        this.alert = true
+        this.rendered = true
         setTimeout(() => {
-          this.alert = false
+          this.rendered = false
         }, 3000)
       })
     }
