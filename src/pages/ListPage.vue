@@ -1,7 +1,7 @@
 <template>
   <v-content class="list-container">
     <Header>
-      <template slot="title">顧客リスト</template>
+      <template slot="title">{{ $t('list.title') }}</template>
       <template slot="menus">
         <HeaderMenu
           @on-click-search="search"

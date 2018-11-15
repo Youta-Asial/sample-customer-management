@@ -2,7 +2,7 @@
   <v-content class="detail-container">
     <Header>
       <v-btn icon class="header-icon" slot="navi" @click="backToList"><v-icon>arrow_back</v-icon></v-btn>
-      <template slot="title">顧客情報詳細</template>
+      <template slot="title">{{ $t('detail.title') }}</template>
       <HeaderMenu
         slot="menus"
         @on-click-edit="goToUpdate"
@@ -42,7 +42,7 @@
         // データベースアクセス
         firebase.database().ref(`customer_list/${this.id}`)
           .remove()
-        EventBus.$emit('notify', '顧客情報が削除されました', 'success')
+        EventBus.$emit('notify', this.$t('notify.deleted_customer'), 'success')
         this.backToList()
       },
       goToUpdate () {

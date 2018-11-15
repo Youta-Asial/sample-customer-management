@@ -6,7 +6,7 @@
     <div class="border-wrapper">
       <v-list-tile-content>
         <v-list-tile-title>{{ customer.company }}</v-list-tile-title>
-        <v-list-tile-sub-title>担当者: {{ customer.staff }} 様</v-list-tile-sub-title>
+        <v-list-tile-sub-title>{{ $t('list.staff', { staff: customer.staff }) }}</v-list-tile-sub-title>
       </v-list-tile-content>
     </div>
   </v-list-tile>

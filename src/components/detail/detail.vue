@@ -8,22 +8,22 @@
     <DetailItem
       :icon="'person'"
       :title="customer.staff"
-      :subtitle="'担当者名'"
+      :subtitle="$t('customer.staff')"
     ></DetailItem>
     <DetailItem
       :icon="'phone'"
       :title="customer.TEL"
-      :subtitle="'担当者電話番号'"
+      :subtitle="$t('customer.TEL')"
     ></DetailItem>
     <DetailItem
       :icon="'mail'"
       :title="customer.email"
-      :subtitle="'担当者Eメール'"
+      :subtitle="$t('customer.email')"
     ></DetailItem>
     <DetailItem
       :icon="'place'"
       :title="customer.address"
-      :subtitle="'所在地'"
+      :subtitle="$t('customer.address')"
     ></DetailItem>
     <Map
       :address="customer.address"

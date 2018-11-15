@@ -7,20 +7,20 @@
       <v-list-tile @click="$emit('on-click-edit')">
         <v-list-tile-title>
           <v-icon>edit</v-icon>
-          編集
+          {{ $t('common.edit') }}
         </v-list-tile-title>
       </v-list-tile>
         <ConfirmDialog
           :rendered="deleteConfirmDialogRendered"
-          :title="'顧客情報の削除'"
-          :message="'表示されている顧客情報を削除します。よろしいですか？'"
+          :title="$t('confirm.delete_title')"
+          :message="$t('confirm.delete_message')"
           @on-accept="onAccept"
           @on-reject="onReject"
         >
           <v-list-tile slot="button" @click="renderDeleteConfirmDialog">
             <v-list-tile-title>
               <v-icon>delete</v-icon>
-              削除
+              {{ $t('common.delete') }}
             </v-list-tile-title>
           </v-list-tile>
         </ConfirmDialog>

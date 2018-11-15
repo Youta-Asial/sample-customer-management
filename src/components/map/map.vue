@@ -3,6 +3,8 @@
 </template>
 
 <script>
+  import mapboxgl from 'mapbox-gl'
+  import MapboxLanguage from '@mapbox/mapbox-gl-language'
   import geocoding from '@mapbox/mapbox-sdk/services/geocoding'
   import { MAPBOX_API_TOKEN } from '../../consts/consts.js'
 
@@ -19,6 +21,7 @@
         center: [139.7521, 35.6825], // デフォルトは皇居
         map: {},
         geocodingClient: {},
+        language: 'ja'
       }
     },
     computed: {
@@ -48,6 +51,7 @@
         })
       },
       renderMap () {
+        mapboxgl.accessToken = MAPBOX_API_TOKEN
         // マーカー（ピン）のオブジェクト
         this.map = new mapboxgl.Map({
           container: 'mapbox',
@@ -55,12 +59,20 @@
           zoom: 13,
           style: 'mapbox://styles/mapbox/streets-v9'
         })
+        const language = new MapboxLanguage()
+        this.map.addControl(language)
         this.renderMarker()
+        this.map.on('load', () => {
+          this.setMapLanguage()
+        })
       },
       renderMarker () {
         const marker = new mapboxgl.Marker()
           .setLngLat(this.center)
           .addTo(this.map)
+      },
+      setMapLanguage () {
+        this.map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_' + this.language])
       }
     },
     mounted () {

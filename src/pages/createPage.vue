@@ -4,7 +4,7 @@
       <v-btn icon slot="navi" class="header-icon" @click="backToList">
         <v-icon>arrow_back</v-icon>
       </v-btn>
-      <template slot="title">顧客情報追加</template>
+      <template slot="title">{{ $t('create.title') }}</template>
       <template slot="menus"></template>
     </Header>
     <v-card>
@@ -46,7 +46,7 @@
         if (!this.checkRequire()) return
         // チェックをパスした場合データベースを更新して画面遷移
         this.setNewCustomer()
-        EventBus.$emit('notify', '顧客情報が追加されました', 'success')
+        EventBus.$emit('notify', this.$t('notify.added_customer'), 'success')
         this.goToDetail()
       },
       goToDetail () {
@@ -64,10 +64,10 @@
       checkRequire () {
         const validatedList = []
         if (!this.customer.company) {
-          validatedList.push('会社名')
+          validatedList.push(this.$t('customer.company'))
         }
         if (!this.customer.staff) {
-          validatedList.push('担当者名')
+          validatedList.push(this.$t('customer.staff'))
         }
         if (validatedList.length !== 0) {
           // チェックに引っかかったものからメッセージを作成して警告ダイアログを表示
@@ -75,7 +75,7 @@
           for (let str of validatedList) {
             require += `「${str}」`
           }
-          EventBus.$emit('notify', `${require}は必須項目です`, 'error')
+          EventBus.$emit('notify', this.$t('notify.require_error', { require: require }), 'error')
           return false
         } else {
           return true

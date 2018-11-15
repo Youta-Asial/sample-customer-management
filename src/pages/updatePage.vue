@@ -4,7 +4,7 @@
       <v-btn icon slot="navi" class="header-icon" @click="backToDetail(customer)">
         <v-icon>arrow_back</v-icon>
       </v-btn>
-      <template slot="title">顧客情報編集</template>
+      <template slot="title">{{ $t('update.title') }}</template>
       <template slot="menus"></template>
     </Header>
     <v-card>
@@ -50,7 +50,7 @@
         if (!this.checkRequire()) return
         // 入力チェックをパスしたらデータベースを更新して画面遷移
         this.updateItem()
-        EventBus.$emit('notify', '顧客情報が変更されました', 'success')
+        EventBus.$emit('notify', this.$t('notify.edited_customer'), 'success')
         this.backToDetail(this.forUpdate)
       },
       cancelEdit () {
@@ -66,17 +66,17 @@
         // 必須チェック
         const validatedList = []
         if (!this.forUpdate.company) {
-          validatedList.push('会社名')
+          validatedList.push(this.$t('customer.company'))
         }
         if (!this.forUpdate.staff) {
-          validatedList.push('担当者名')
+          validatedList.push(this.$t('customer.staff'))
         }
         if (validatedList.length !== 0) {
           let require = ''
           for (let str of validatedList) {
             require += `「${str}」`
           }
-          EventBus.$emit('notify', `${require}は必須項目です`, 'error')
+          EventBus.$emit('notify', this.$t('notify.require_error', { require: require }), 'error')
           return false
         } else {
           return true

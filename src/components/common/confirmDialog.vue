@@ -6,8 +6,8 @@
       <v-card-text>{{ message }}</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" flat @click="$emit('on-accept')">はい</v-btn>
-        <v-btn color="primary" flat @click="$emit('on-reject')">いいえ</v-btn>
+        <v-btn color="primary" flat @click="$emit('on-accept')">{{ $t('confirm.accept') }}</v-btn>
+        <v-btn color="primary" flat @click="$emit('on-reject')">{{ $t('confirm.reject') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
